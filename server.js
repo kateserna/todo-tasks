@@ -1,6 +1,7 @@
-const express = require('express');
+const express = require("express");
 const port = process.env.PORT || 3000; 
 const app = express(); //objeto instancia del constructor express
+const api = require('./api');
 
 //pone a la escucha en el puerto de red el servidor
 app.listen(port, function () {
@@ -10,3 +11,5 @@ app.listen(port, function () {
 app.get('/', function (req, res) {
     res.send("hello world");
 });
+
+app.use('/api', api);
