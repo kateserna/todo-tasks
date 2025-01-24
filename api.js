@@ -59,4 +59,32 @@ router.post('/create-task', function (req, res) {
     });
 });
 
+
+//Consultar todas las tareas:
+router.get('/all-tasks', function (req, res) {
+    //busca todos los registros y los devuelve como un arreglo json
+    TaskModel.find(function (err, data) {
+        if (err) {
+            res.status(500).send("Internal error\n");
+        }
+        else {
+            res.status(200).send(data);
+        }
+    });
+});
+
+
+//Consultar una tarea por id:
+router.get('/task/:id', function (req, res) {
+    TaskModel.findOne({ TaskId: req.params.id }, function (err, data) {
+        if (err) {
+            res.status(500).send("Internal error\n");
+        }
+        else {
+            res.status(200).send(data);
+        }
+    });
+});
+
+
 module.exports = router;
